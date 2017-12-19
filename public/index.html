@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="site">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Beach Hacks Live</title>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="manifest" href="/manifest.json">
+  </head>
+
+  <body ng-controller="LiveSiteController as site">
+
+    <div>
+      <!-- TAB NAVBAR -->
+      <section class="list-group-item">
+        <tab-nav></tab-nav>
+      </section>
+
+      <general-user-view ng-hide="site.loggedIn"></general-user-view>
+
+      <admin-view ng-show="site.loggedIn"></admin-view>
+
+      <div class="hidden-login">
+        <button class="btn" type="button" ng-click="site.openLogin()"></button>
+      </div>
+
+
+      <div class="notification" ng-show="activeNotification">
+        <button class="btn closebtn" type="button" ng-click="site.setActiveNotification(false)">X</button>
+        {{anncmntCtrl.mostRecentAnnouncement}}
+        {{site.activeNotification}}
+      </div>
+    </div>
+
+
+
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!-- AngularJS -->
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <!-- Firebase -->
+    <script type="text/javascript" src="js/firebase.js"></script>
+    <!-- AngularFire -->
+    <script type="text/javascript" src="js/angularfire.min.js"></script>
+
+    <!-- app.js -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <!-- admin-announcements -->
+    <script type="text/javascript" src="js/admin-announcements.js"></script>
+  </body>
+</html>
