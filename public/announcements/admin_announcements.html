@@ -1,0 +1,25 @@
+<div class="container">
+  <!-- ANNOUNCEMENTS -->
+  <div class="anncmnt-tab" ng-controller="announcements_controller">
+
+    <h2 class="tab-title">Admin Announcements</h2>
+
+    <!-- ANNOUNCEMENT FORM -->
+    <!-- <h2>ADMIN</h2> -->
+    <form class="anncmnt-form" ng-submit="addAnnouncement()">
+      <input class="form-control" type="text" id="anncmnt-input" placeholder="Add Announcement" ng-model="newAnnouncement">
+      <button class="btn" type="submit">Update</button>
+    </form>
+
+    <!-- LIST OF ANNOUNCEMENTS -->
+    <ul class="list-group" ng-repeat="anncmt in announcementList | orderBy:'':true">
+      <li class="list-group-item">
+        <div class="row">
+          <h5 class="col-sm-3 anncmnt-item">{{anncmt.time | date: 'EEEE h:mm a'}}</h5>
+          <h5 class="col-sm-9 anncmnt-item">{{anncmt.description}}</h5>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</div>
