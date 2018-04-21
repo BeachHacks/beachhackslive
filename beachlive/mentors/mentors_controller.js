@@ -28,7 +28,7 @@ liveApp.controller('mentors_controller', ["$scope","$timeout","$http","$firebase
        $scope.startRequest = function() {
          $scope.isRequesting = true;
        };
-       
+
        $scope.addMentor = function(){
          if($scope.newMentor !== ''){
            var a = {};
@@ -54,13 +54,16 @@ liveApp.controller('mentors_controller', ["$scope","$timeout","$http","$firebase
        };
 
        $scope.addRequest = function() {
-         $scope.requestInfo.requestTime = Date.now();
+         $scope.requestInfo.requestTime = new Date();
          $scope.requestInfo.pending = true;
 
-         console.log($scope.requestInfo.mentorKey);
+         // console.log($scope.requestInfo.mentorKey);
          refRequest.push($scope.requestInfo);
 
-         //$scope.postMentorRequestToSlack();
+         $scope.postMentorRequestToSlack();
+         // console.log(dateToTime($scope.requestInfo.requestTime));
+
+
          $scope.requestInfo = {
            name : '',
            pending : '',
@@ -117,7 +120,7 @@ liveApp.controller('mentors_controller', ["$scope","$timeout","$http","$firebase
        $scope.postMentorRequestToSlack = function() {
          $http({
            method: 'POST',
-           url: 'https://hooks.slack.com/services/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',
+           url: 'https://hooks.slack.com/services/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',
            headers: {
              'Content-Type': 'application/x-www-form-urlencoded'
            },
@@ -125,7 +128,7 @@ liveApp.controller('mentors_controller', ["$scope","$timeout","$http","$firebase
              "attachments": [{
                "fallback": "The attachement isn't loading.",
                "callback_id": "mentor_request_app",
-               "title": "****Mentor Request @"+$scope.requestInfo.time+'****',
+               "title": "****Mentor Request @ "+dateToTime($scope.requestInfo.requestTime)+' ****',
                "color": "#9C1A22",
                "mrkdwn_in": ["text","fields"],
                "fields": [
@@ -176,4 +179,17 @@ liveApp.controller('mentors_controller', ["$scope","$timeout","$http","$firebase
              console.log("failed to send to slack");
            });
     };
+
+    function dateToTime(time) {
+      var hours = $scope.requestInfo.requestTime.getHours();
+      var minutes = $scope.requestInfo.requestTime.getMinutes();
+      var amPm = hours > 11 ? "pm" :"am";
+
+      hours = (hours % 13);
+      hours = (hours == 0) ? 1 : hours;
+      hours = (hours < 10) ? "0"+hours : hours;
+      minutes = (minutes < 10) ? "0"+minutes : minutes;
+
+      return `${hours}:${minutes}${amPm}`;
+    }
 }]);
