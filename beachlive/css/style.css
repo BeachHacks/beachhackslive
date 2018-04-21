@@ -263,6 +263,7 @@ Displaying styles.css.
   padding: 0;
   width: 100%;
   background: rgba(255,255,255,0.5);
+  color: black;
 }
 .timeline h1, .timeline h2, .timeline h3, .timeline h4, .timeline h5, .timeline h6 {
   line-height: inherit;
@@ -279,7 +280,7 @@ Displaying styles.css.
 
 /*----- TIMELINE INFO -----*/
 .timeline-info {
-  font-size: 12px;
+  font-size: 30px;
   font-weight: 700;
   letter-spacing: 3px;
   margin: 0 0 .5em 0;
@@ -330,6 +331,7 @@ Displaying styles.css.
 /*----- TIMELINE CONTENT -----*/
 .timeline-content {
   padding-bottom: 40px;
+  font-size: 30px;
 }
 .timeline-content p:last-child {
   margin-bottom: 0;
