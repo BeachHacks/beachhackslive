@@ -120,7 +120,7 @@ liveApp.controller('mentors_controller', ["$scope","$timeout","$http","$firebase
        $scope.postMentorRequestToSlack = function() {
          $http({
            method: 'POST',
-           url: 'https://hooks.slack.com/services/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',
+           url: 'https://hooks.slack.com/services/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',
            headers: {
              'Content-Type': 'application/x-www-form-urlencoded'
            },
